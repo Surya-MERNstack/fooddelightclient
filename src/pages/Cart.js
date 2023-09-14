@@ -12,7 +12,8 @@ const Cart = () => {
   const [payment, setPayment] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
+  console.log(setPayment)
   const productCartItems = useSelector((state) => state.product.cartItem);
 
   const totalPrice = productCartItems.reduce(
