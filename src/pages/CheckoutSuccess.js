@@ -18,19 +18,10 @@ const CheckoutSuccess = () => {
       }, 1000);
     }, 2000);
   }, [navigate]);
+
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div
-        className={`bg-${
-          showSuccess ? "green-400" : isLoading ? "gray-300" : "transparent"
-        } p-8 rounded-lg shadow-lg transform ${
-          isLoading
-            ? "-translate-y-16"
-            : showSuccess
-            ? "translate-y-0"
-            : "-translate-y-16"
-        } transition-all duration-500`}
-      >
+    <div className={`min-h-screen flex items-center justify-center bg-${isLoading ? 'blur' : 'transparent'}`}>
+      <div className={`bg-${showSuccess ? 'green-400' : 'transparent'} p-8 rounded-lg shadow-lg transform translate-y-${isLoading ? '16' : showSuccess ? '0' : '16'} transition-all duration-500`}>
         {isLoading ? (
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-green-500"></div>
         ) : showSuccess ? (

@@ -16,7 +16,7 @@ const CartProduct = ({ name, image, category, id, qty, price, total }) => {
   return (
     <div className="bg-slate-200 p-2 flex rounded border-2 border-slate-300">
       <div className="bg-white p-3 rounded overflow-hidden">
-        <img src={image} className="h-28 w-36 object-cover"></img>
+        <img src={image} alt="#" className="h-28 w-36 object-cover"></img>
       </div>
       <div className="flex flex-col gap-1 bg-white w-full">
         <div className="flex justify-between">
@@ -27,7 +27,7 @@ const CartProduct = ({ name, image, category, id, qty, price, total }) => {
             className="ml-auto text-red-400 text-xl m-2 cursor-pointer hover:text-red-500"
             onClick={() => dispatch(deleteCartItems(id))}
           >
-            <AiFillDelete />
+            <AiFillDelete /> 
           </div>
         </div>
         <p className=" text-slate-400 font-medium text-lg">{category}</p>

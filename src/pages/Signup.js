@@ -49,7 +49,7 @@ const Signup = () => {
     const { firstName, email, password, confirmPassword } = formData;
 
     if (firstName && email && password && confirmPassword) {
-      if (password == confirmPassword) {
+      if (password === confirmPassword) {
         const fetchData = await fetch(
           `${process.env.REACT_APP_SERVER}users/signup`,
           {
@@ -61,12 +61,12 @@ const Signup = () => {
           }
         );
         const responseData = await fetchData.json();
-        if (responseData.status == 200) {
+        if (responseData.status === 200) {
           toast.success(responseData.message, {
             position: toast.POSITION.TOP_CENTER,
           });
         }
-        if (responseData.status == 300) {
+        if (responseData.status === 300) {
           toast.error(responseData.message, {
             position: toast.POSITION.TOP_CENTER,
           });
@@ -94,6 +94,7 @@ const Signup = () => {
           <img
             src={formData.image ? formData.image : signup}
             className="w-full h-full "
+            alt="#"
           ></img>
           <label htmlFor="profile">
             <div className="absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-50 w-full text-center text-white cursor-pointer">

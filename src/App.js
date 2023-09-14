@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import Headers from './component/Headers'
 import { Outlet } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import {setDataProduct} from './redux/ProductSlice'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
 
   const dispatch = useDispatch();
-  const ProductData = useSelector((state) => state.product)
+  // const ProductData = useSelector((state) => state.product)
 
   useEffect(() => {
     ( async () => {
@@ -16,7 +16,7 @@ const App = () => {
       const resData = await responseData.json()
       dispatch(setDataProduct(resData))
     })()
-  },[])
+  },[dispatch])
 
   
   

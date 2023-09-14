@@ -8,7 +8,9 @@ import AllProduct from "../component/AllProduct";
 
 const Home = () => {
   const product = useSelector((state) => state.product.productList);
-  const ProductCartVegetable = product.filter((e) => e.category == "vegetable");
+  const ProductCartVegetable = product.filter(
+    (e) => e.category === "vegetable"
+  );
   const homeProduct = product.slice(18, 22);
   const Loading = new Array(4).fill(null);
   const scrollLoading = new Array(10).fill(null);
@@ -29,6 +31,7 @@ const Home = () => {
           <div className="flex gap-3 bg-slate-400 w-36 px-2 items-center rounded-full">
             <p className="text-sm ">Bike delivery</p>
             <img
+              alt="#"
               className="h-7 font-medium text-slate-700"
               src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
             ></img>
@@ -66,8 +69,7 @@ const Home = () => {
                   />
                 );
               })
-            : 
-              Loading.map((e, i) => {
+            : Loading.map((e, i) => {
                 return (
                   <HomeCard
                     key={"loading-" + i}

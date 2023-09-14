@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginRedux } from "../redux/UserData";
 
 const Login = () => {
@@ -16,9 +16,6 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-
-  const userData = useSelector((state) => state);
-
   const dispatch = useDispatch();
 
   const handlePassword = () => {
@@ -58,15 +55,15 @@ const Login = () => {
         }, 1000);
       }
 
-      if (responseData.status == 401) {
+      if (responseData.status === 401) {
         toast.error(responseData.message, {
           position: toast.POSITION.TOP_CENTER,
         });
-      } else if (responseData.status == 402) {
+      } else if (responseData.status === 402) {
         toast.error(responseData.message, {
           position: toast.POSITION.TOP_CENTER,
         });
-      } else if (responseData.status == 501) {
+      } else if (responseData.status === 501) {
         toast.error(responseData.message, {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -85,7 +82,7 @@ const Login = () => {
     <div className="p-3 md:p-4 ">
       <div className="w-full max-w-sm bg-white flex m-auto items-center flex-col p-4">
         <div className="w-12 overflow-hidden rounded-full drop-shadow-md shadow-md">
-          <img src={signup} className="w-full"></img>
+          <img src={signup} className="w-full" alt="#"></img>
         </div>
         <form className="w-full py-3 flex flex-col" onSubmit={handleFormSubmit}>
           <label htmlFor="email">Email</label>

@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/ProductSlice";
 
-const Cart = () => {
+const Cart = () => { 
   const [payment, setPayment] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const Cart = () => {
               Your Cart Items
             </h2>
             <div className="w-full flex justify-center items-center flex-col">
-              <img src={cartimg} className="w-full max-w-sm"></img>
+              <img src={cartimg} className="w-full max-w-sm" alt="#"></img>
               <p className="text-slate-500 text-3xl font-bold">Cart Empty...</p>
             </div>
           </>
@@ -128,7 +128,7 @@ const Cart = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center h-42 ">
-            <img src={cartimg} className=" w-36  h-36"></img>
+            <img src={cartimg} className=" w-36  h-36" alt="#"></img>
             <h2 className="text-lg md:text-xl font-bold text-slate-500">
               Your Cart is Empty
             </h2>

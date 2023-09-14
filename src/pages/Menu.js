@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AllProduct from "../component/AllProduct";
 import { addCartItems } from "../redux/ProductSlice";
 
 const Menu = () => {
   const { dataFilter } = useParams();
   const productData = useSelector((state) => state.product.productList);
-  const ProductDisplay = productData.filter((e) => e._id == dataFilter)[0];
+  const ProductDisplay = productData.filter((e) => e._id === dataFilter)[0];
   const navigate = useNavigate();
 
   const dispatch = useDispatch();

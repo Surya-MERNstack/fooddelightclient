@@ -1,6 +1,6 @@
 import React from "react";
 import { CiForkAndKnife } from "react-icons/ci";
-import { GiFullPizza } from "react-icons/gi";
+
 const FilterProduct = ({ category, onClick, isActive }) => {
   return (
     <div onClick={onClick}>
