@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import signup from "../assest/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Image } from "../utilits/ImageBase";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    firstName : "",
-    lastName : "",
-    email : "",
-    password : "",
-    confirmPassword : "",
-    image :""
-  })
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    image: "",
+  });
   const navigate = useNavigate();
 
   const handlePassword = () => {
@@ -28,77 +28,84 @@ const Signup = () => {
   };
 
   const handleForm = (e) => {
-    const {name, value} = e.target;
-    setFormData((prev) => ({
-        ...prev,
-        [name] : value
-    }))
-  }
- 
-  const handleProfile =async (e) => {
-    const Data = await Image(e.target.files[0]);
-    
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      image : Data
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
-  console.log(process.env.REACT_SERVER)
+  const handleProfile = async (e) => {
+    const Data = await Image(e.target.files[0]);
 
- const handleFormSubmit = async (e) => {
-      e.preventDefault();
-      const {firstName,email,password,confirmPassword} = formData;
-      
-      if(firstName && email && password && confirmPassword){
-        if(password == confirmPassword){
-            // alert('success')
-            const fetchData = await fetch(`${process.env.REACT_APP_SERVER}/signup`,{
-              method : "POST",
-              headers : {
-                "content-type" : "application/json"
-              },
-              body : JSON.stringify(formData)
-            })
-          const responseData = await fetchData.json()  
-          console.log(responseData)
-           if(responseData.status == 200) {
-            toast.success(responseData.message, {
-              position : toast.POSITION.TOP_CENTER
-            })
-           }
-           if(responseData.status == 300) {
-            toast.error(responseData.message, {
-              position : toast.POSITION.TOP_CENTER
-            })
-           }
-            if(responseData.alert){
-              setTimeout(() => {
-                navigate('/login')
-              },1000)
-            }
-        }else{
-            toast.error('password is not matched', {
-              position : toast.POSITION.TOP_CENTER
-            })
+    setFormData((prev) => ({
+      ...prev,
+      image: Data,
+    }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const { firstName, email, password, confirmPassword } = formData;
+
+    if (firstName && email && password && confirmPassword) {
+      if (password == confirmPassword) {
+        const fetchData = await fetch(
+          `${process.env.REACT_APP_SERVER}users/signup`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+        const responseData = await fetchData.json();
+        if (responseData.status == 200) {
+          toast.success(responseData.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
-      }else{
-        toast.error('please fill the form', {
-          position : toast.POSITION.TOP_CENTER
-        })
+        if (responseData.status == 300) {
+          toast.error(responseData.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        }
+        if (responseData.alert) {
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
+        }
+      } else {
+        toast.error("password is not matched", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
- }
+    } else {
+      toast.error("please fill the form", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
   return (
     <div className="p-3 md:p-4 ">
       <div className="w-full max-w-sm bg-white  m-auto flex  flex-col p-4">
-        {/* <h1 className='text-center text-2xl font-bold'>signup</h1> */}
         <div className="w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative">
-           <img src={formData.image ? formData.image : signup} className="w-full h-full "></img>
+          <img
+            src={formData.image ? formData.image : signup}
+            className="w-full h-full "
+          ></img>
           <label htmlFor="profile">
-          <div className="absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-50 w-full text-center text-white cursor-pointer">
-             <p className="text-sm">upload</p>
-          </div>
-          <input type="file" id="profile" accept="image/"  onChange={handleProfile} className="hidden"/>
+            <div className="absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-50 w-full text-center text-white cursor-pointer">
+              <p className="text-sm">upload</p>
+            </div>
+            <input
+              type="file"
+              id="profile"
+              accept="image/"
+              onChange={handleProfile}
+              className="hidden"
+            />
           </label>
         </div>
         <form className="w-full py-3 flex flex-col" onSubmit={handleFormSubmit}>
@@ -163,13 +170,16 @@ const Signup = () => {
               {confirmPassword ? <BiShow /> : <BiHide />}
             </span>
           </div>
-          <button
-            className="max-w-[120px] w-full m-auto  bg-red-500 hover:bg-red-600 cursor-pointer text-white text-lg py-1 rounded-full mt-4"
-          >
+          <button className="max-w-[120px] w-full m-auto  bg-red-500 hover:bg-red-600 cursor-pointer text-white text-lg py-1 rounded-full mt-4">
             Signup
           </button>
-          <p className="p-1 mt-1">Already have account? <Link to="/login" className="text-red-500 underline">Login</Link></p>
-          <ToastContainer/>
+          <p className="p-1 mt-1">
+            Already have account?{" "}
+            <Link to="/login" className="text-red-500 underline">
+              Login
+            </Link>
+          </p>
+          <ToastContainer />
         </form>
       </div>
     </div>

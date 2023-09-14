@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     ( async () => {
-      const responseData = await fetch(`${process.env.REACT_APP_SERVER}/product`) 
+      const responseData = await fetch(`${process.env.REACT_APP_SERVER}users/product`) 
       const resData = await responseData.json()
       dispatch(setDataProduct(resData))
     })()

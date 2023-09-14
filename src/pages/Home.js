@@ -66,7 +66,7 @@ const Home = () => {
                   />
                 );
               })
-            : // <FadeLoader color="#36d7b7" />
+            : 
               Loading.map((e, i) => {
                 return (
                   <HomeCard

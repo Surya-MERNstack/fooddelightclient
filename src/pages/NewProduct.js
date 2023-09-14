@@ -23,7 +23,6 @@ const NewProduct = () => {
 
   const handleUploadImg = async (e) => {
     const Data = await Image(e.target.files[0]);
-    // console.log(Data);
     setData((prev) => ({
       ...prev,
       image: Data,

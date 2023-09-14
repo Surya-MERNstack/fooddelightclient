@@ -16,7 +16,6 @@ export const ProductSlice = createSlice({
     },
     addCartItems: (state, action) => {
       const check = state.cartItem.some((e) => e._id === action.payload._id);
-      console.log(check);
       if (check) {
         toast.info("Already Item in cart", {
           position: toast.POSITION.TOP_CENTER,
@@ -58,9 +57,9 @@ export const ProductSlice = createSlice({
       const indexProduct = state.cartItem.findIndex(
         (e) => e._id === action.payload
       );
-      
+
       let qty = state.cartItem[indexProduct].qty;
-      
+
       if (qty > 1) {
         const qtyDecrease = --qty;
         state.cartItem[indexProduct].qty = qtyDecrease;
@@ -78,11 +77,9 @@ export const ProductSlice = createSlice({
     },
     clearCart: (state) => {
       state.cartItem = [];
-     setTimeout(() => {
       toast.info("Cart cleared", {
         position: toast.POSITION.TOP_CENTER,
-      },2000);
-     })
+      });
     },
   },
 });

@@ -33,23 +33,23 @@ const Login = () => {
     }));
   };
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const { email, password } = formData;
 
     if (email && password) {
-      const fetchData = await fetch(`${process.env.REACT_APP_SERVER}/login`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const fetchData = await fetch(
+        `${process.env.REACT_APP_SERVER}users/login`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const responseData = await fetchData.json();
-      // console.log(responseData)
-      
 
       if (responseData.alert) {
         dispatch(loginRedux(responseData));
@@ -58,11 +58,7 @@ const Login = () => {
         }, 1000);
       }
 
-      console.log(userData)
-      
-
       if (responseData.status == 401) {
-        // Display an error toast
         toast.error(responseData.message, {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -88,7 +84,6 @@ const Login = () => {
   return (
     <div className="p-3 md:p-4 ">
       <div className="w-full max-w-sm bg-white flex m-auto items-center flex-col p-4">
-        {/* <h1 className='text-center text-2xl font-bold'>signup</h1> */}
         <div className="w-12 overflow-hidden rounded-full drop-shadow-md shadow-md">
           <img src={signup} className="w-full"></img>
         </div>

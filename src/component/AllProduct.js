@@ -10,7 +10,7 @@ const AllProduct = ({ heading }) => {
   const categoryList = [...new Set(product.map((e) => e.category))];
   const [dataFilter, setDataFilter] = useState(product);
   const scrollLoading = new Array(10).fill(null);
-
+ 
   useEffect(() => {
     setDataFilter(product);
   }, [product]);
