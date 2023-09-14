@@ -8,20 +8,29 @@ const CheckoutSuccess = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Simulate a payment process
     setTimeout(() => {
       setIsLoading(false);
+
+      // Payment is successful, set showSuccess to true
+      setShowSuccess(true);
+
+      // Navigate to the home page after a delay
       setTimeout(() => {
-        setShowSuccess(true);
-        setTimeout(() => {
-          navigate("/home");
-        }, 3000);
-      }, 1000);
+        navigate("/home");
+      }, 3000);
     }, 2000);
   }, [navigate]);
 
   return (
-    <div className={`min-h-screen flex items-center justify-center bg-${isLoading ? 'blur' : 'transparent'}`}>
-      <div className={`bg-${showSuccess ? 'green-400' : 'transparent'} p-8 rounded-lg shadow-lg transform translate-y-${isLoading ? '16' : showSuccess ? '0' : '16'} transition-all duration-500`}>
+    <div className="min-h-screen flex items-center justify-center">
+      <div
+        className={`${
+          showSuccess ? "bg-green-400" : "bg-transparent"
+        } p-8 rounded-lg shadow-lg transform ${
+          isLoading ? "translate-y-16 opacity-0" : "translate-y-0 opacity-100"
+        } transition-all duration-500`}
+      >
         {isLoading ? (
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-green-500"></div>
         ) : showSuccess ? (
