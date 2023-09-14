@@ -8,14 +8,9 @@ const CheckoutSuccess = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Simulate a payment process
     setTimeout(() => {
       setIsLoading(false);
-
-      // Payment is successful, set showSuccess to true
       setShowSuccess(true);
-
-      // Navigate to the home page after a delay
       setTimeout(() => {
         navigate("/home");
       }, 3000);
